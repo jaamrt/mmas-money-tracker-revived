@@ -1,3 +1,6 @@
+# ⚠️ MAINTENANCE FORK: 
+This is a maintained fork of the original mmas-money-tracker repository, which appears to be unmaintained. This fork has been updated to use Flutter 3.38.3 and Dart 3.10.1, and includes null safety and necessary dependency upgrades.
+
 # MMAS: Money Tracker
 
 > An optimized application for daily expense tracking and finance management. <br />

@@ -51,7 +51,6 @@ class SharedPrefs {
   set dateFormat(String dateFormat) =>
       _sharedPrefs!.setString('dateFormat', dateFormat);
 
-
   bool get isPasscodeOn => _sharedPrefs!.getBool('isPasscodeOn') ?? false;
 
   set isPasscodeOn(bool value) => _sharedPrefs!.setBool('isPasscodeOn', value);
@@ -191,7 +190,7 @@ class SharedPrefs {
         categoryItem(MdiIcons.dogService, 'Pets'),
         categoryItem(MdiIcons.tableChair, 'Furnishings'),
         categoryItem(MdiIcons.autoFix, 'Home Services'),
-        categoryItem(MdiIcons.homeCurrencyUsd, 'Mortgage & Rent'),
+        categoryItem(MdiIcons.currencyUsd, 'Mortgage & Rent'),
       ]);
 
       saveItems('Utility Bills', [

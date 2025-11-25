@@ -101,12 +101,12 @@ class _CalendarBodyState extends State<CalendarBody> {
               },
               child: SwipeActionCell(
                 key: ObjectKey(transactions[int]),
-                performsFirstActionWithFullSwipe: true,
                 trailingActions: <SwipeAction>[
                   SwipeAction(
                       title: getTranslated(context, 'Delete') ?? 'Delete',
+                      performsFirstActionWithFullSwipe: true,
                       //setState makes handler experience lagging
-                      onTap: (CompletionHandler handler)  {
+                      onTap: (CompletionHandler handler) {
                         Platform.isIOS
                             ? iosDialog(
                                 context,

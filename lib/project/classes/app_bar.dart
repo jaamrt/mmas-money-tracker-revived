@@ -6,8 +6,7 @@ import 'package:money_assistant_2608/project/app_pages/input.dart';
 
 import 'constants.dart';
 
-
-class BasicAppBar extends StatelessWidget with PreferredSizeWidget {
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   const BasicAppBar(this.title);
 
@@ -23,27 +22,26 @@ class BasicAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 }
 
-
 class InExAppBar extends StatelessWidget implements PreferredSizeWidget {
-final bool isInputPage;
-const InExAppBar(this.isInputPage);
+  final bool isInputPage;
+  const InExAppBar(this.isInputPage);
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     Tab appBarTab(String title) => Tab(
-      child: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        decoration: BoxDecoration(),
-        child: Align(
-            child: Text(
+          child: Container(
+            width: double.maxFinite,
+            height: double.maxFinite,
+            decoration: BoxDecoration(),
+            child: Align(
+                child: Text(
               getTranslated(context, title)!,
               style: TextStyle(fontSize: 19.sp),
             )),
-      ),
-    );
+          ),
+        );
     return AppBar(
       backgroundColor: blue2,
       title: TabBar(
@@ -53,24 +51,22 @@ const InExAppBar(this.isInputPage);
           borderRadius: BorderRadius.circular(50.r),
           color: Color.fromRGBO(82, 179, 252, 1),
         ),
-        tabs: [
-         appBarTab('EXPENSE'),
-          appBarTab('INCOME')
-        ],
+        tabs: [appBarTab('EXPENSE'), appBarTab('INCOME')],
       ),
-      actions: isInputPage ? [
-        IconButton(
-          icon: Icon(Icons.check),
-          iconSize: 28,
-          onPressed: () {
-            saveInputFunc(context,true);
-          },
-        )
-      ] : null,
+      actions: isInputPage
+          ? [
+              IconButton(
+                icon: Icon(Icons.check),
+                iconSize: 28,
+                onPressed: () {
+                  saveInputFunc(context, true);
+                },
+              )
+            ]
+          : null,
     );
   }
 }
-
 
 class CategoryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget editCategory;
@@ -115,8 +111,8 @@ class CategoryAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-
-class EditCategoryAppBar extends StatelessWidget implements PreferredSizeWidget {
+class EditCategoryAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   final Widget addCategory;
   const EditCategoryAppBar(this.addCategory);
 
@@ -131,11 +127,11 @@ class EditCategoryAppBar extends StatelessWidget implements PreferredSizeWidget 
         Padding(
           padding: EdgeInsets.only(right: 5.w),
           child: TextButton(
-            onPressed: () =>  Navigator.push(context,
-                MaterialPageRoute(builder: (context) => addCategory)),
+            onPressed: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => addCategory)),
             child: Text(
               getTranslated(context, 'Add')!,
-              style: TextStyle(fontSize: 18.5.sp,  color: white),
+              style: TextStyle(fontSize: 18.5.sp, color: white),
             ),
           ),
           // child: Icon(Icons.edit),
@@ -146,5 +142,3 @@ class EditCategoryAppBar extends StatelessWidget implements PreferredSizeWidget 
     );
   }
 }
-
-

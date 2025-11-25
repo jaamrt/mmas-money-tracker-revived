@@ -37,9 +37,9 @@ class _SaveButtonState extends State<SaveButton> {
         },
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-          primary: Color.fromRGBO(236, 158, 66, 1),
-          onPrimary: white,
-          onSurface: grey,
+          // primary: Color.fromRGBO(236, 158, 66, 1),
+          // onPrimary: white,
+          // onSurface: grey,
           elevation: 10,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0.r),
@@ -101,9 +101,9 @@ class SaveAndDeleteButton extends StatelessWidget {
             },
             style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-                primary: white,
-                onPrimary: red,
-                onSurface: grey,
+                // primary: white,
+                // onPrimary: red,
+                // onSurface: grey,
                 side: BorderSide(
                   color: red,
                   width: 2.h,
@@ -164,13 +164,18 @@ Future<void> deleteCategoryFunction(
           .getAllExpenseItems();
     }
     Navigator.pop(context);
-    customToast(context,'Category has been deleted');
+    customToast(context, 'Category has been deleted');
   }
 
   Platform.isIOS
       ? await iosDialog(
           context,
-              'Are you sure you want to delete this category?', 'Delete',
+          'Are you sure you want to delete this category?',
+          'Delete',
           onDeletion)
-      : await androidDialog(context,  'Are you sure you want to delete this category?', 'Delete',onDeletion);
+      : await androidDialog(
+          context,
+          'Are you sure you want to delete this category?',
+          'Delete',
+          onDeletion);
 }

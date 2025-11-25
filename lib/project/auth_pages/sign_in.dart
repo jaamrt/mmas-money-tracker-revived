@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,28 +5,43 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../home.dart';
 
 class SignIn extends StatelessWidget {
-  Future<String?>? _authenticateUsers(LoginData data) {
-    print('authenticate users');
-    return Future.delayed(Duration(seconds: 1)).then((_) => null);
+  const SignIn({key});
+
+  // Used for onLogin (Expects LoginData)
+  Future<String?> _authenticateUsers(LoginData data) {
+    print('authenticate user: ${data.name}');
+    return Future.delayed(const Duration(seconds: 1)).then((_) => null);
   }
 
-  Future<String?>? _onRecoverPassword(String name) {
-    print('onRecoverPassword');
-    return Future.delayed(Duration(seconds: 1)).then((_) => null);
+  // Used for onSignup (Expects SignupData)
+  Future<String?> _signupUsers(SignupData data) {
+    print('signup user: ${data.name}');
+    return Future.delayed(const Duration(seconds: 1)).then((_) => null);
+  }
+
+  Future<String?> _onRecoverPassword(String name) {
+    print('onRecoverPassword: $name');
+    return Future.delayed(const Duration(seconds: 1)).then((_) => null);
   }
 
   @override
   Widget build(BuildContext context) {
     final inputBorder = BorderRadius.vertical(
-      bottom: Radius.circular(10.0),
-      top: Radius.circular(20.0),
+      bottom: const Radius.circular(10.0),
+      top: const Radius.circular(20.0),
     );
+
     return FlutterLogin(
       title: 'MMAS',
-      logo: 'Hi!',
-      onSignup: _authenticateUsers,
+      logo:
+          'assets/images/logo.png', // Ensure this path exists or remove property if strictly text
+      // logoTag: 'Hi!', // If using a hero tag string instead of image path
+
+      onSignup:
+          _signupUsers, // FIXED: Now uses the function accepting SignupData
       onLogin: _authenticateUsers,
       onRecoverPassword: _onRecoverPassword,
+
       onSubmitAnimationCompleted: () {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Home()));
@@ -51,7 +65,7 @@ class SignIn extends StatelessWidget {
           label: 'Google',
           callback: () async {
             print('start google sign in');
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
             print('stop google sign in');
             return null;
           },
@@ -61,7 +75,7 @@ class SignIn extends StatelessWidget {
           label: 'Facebook',
           callback: () async {
             print('start facebook sign in');
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
             print('stop facebook sign in');
             return null;
           },
@@ -70,7 +84,7 @@ class SignIn extends StatelessWidget {
           icon: FontAwesomeIcons.linkedinIn,
           callback: () async {
             print('start linkdin sign in');
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
             print('stop linkdin sign in');
             return null;
           },
@@ -79,7 +93,7 @@ class SignIn extends StatelessWidget {
           icon: FontAwesomeIcons.githubAlt,
           callback: () async {
             print('start github sign in');
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
             print('stop github sign in');
             return null;
           },
@@ -89,27 +103,27 @@ class SignIn extends StatelessWidget {
         primaryColor: Colors.teal,
         accentColor: Colors.yellow,
         errorColor: Colors.deepOrange,
-        titleStyle: TextStyle(
+        titleStyle: const TextStyle(
           color: Colors.greenAccent,
           fontFamily: 'Quicksand',
           letterSpacing: 4,
         ),
-        bodyStyle: TextStyle(
+        bodyStyle: const TextStyle(
           fontStyle: FontStyle.italic,
           decoration: TextDecoration.underline,
         ),
-        textFieldStyle: TextStyle(
+        textFieldStyle: const TextStyle(
           color: Colors.orange,
           shadows: [Shadow(color: Colors.yellow, blurRadius: 2)],
         ),
-        buttonStyle: TextStyle(
+        buttonStyle: const TextStyle(
           fontWeight: FontWeight.w800,
           color: Colors.yellow,
         ),
         cardTheme: CardTheme(
           color: Colors.yellow.shade100,
           elevation: 5,
-          margin: EdgeInsets.only(top: 15),
+          margin: const EdgeInsets.only(top: 15),
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(100.0)),
         ),
@@ -117,11 +131,11 @@ class SignIn extends StatelessWidget {
           filled: true,
           fillColor: Colors.purple.withOpacity(.1),
           contentPadding: EdgeInsets.zero,
-          errorStyle: TextStyle(
+          errorStyle: const TextStyle(
             backgroundColor: Colors.orange,
             color: Colors.white,
           ),
-          labelStyle: TextStyle(fontSize: 12),
+          labelStyle: const TextStyle(fontSize: 12),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.blue.shade700, width: 4),
             borderRadius: inputBorder,
@@ -139,7 +153,7 @@ class SignIn extends StatelessWidget {
             borderRadius: inputBorder,
           ),
           disabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey, width: 5),
+            borderSide: const BorderSide(color: Colors.grey, width: 5),
             borderRadius: inputBorder,
           ),
         ),
@@ -152,9 +166,6 @@ class SignIn extends StatelessWidget {
           shape: BeveledRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          // shape: CircleBorder(side: BorderSide(color: Colors.green)),
-          // shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(55.0)),
         ),
       ),
     );

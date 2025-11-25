@@ -241,7 +241,8 @@ class _ReportBodyState extends State<ReportBody> {
                                 ),
                                 majorTickLines: MajorTickLines(size: 5.sp)),
                             series: _getGradientAreaSeries(
-                                this.widget.type, monthBasedTransactionList),
+                                    this.widget.type, monthBasedTransactionList)
+                                as List<CartesianSeries<dynamic, dynamic>>,
                             onMarkerRender: (MarkerRenderArgs args) {
                               if (this.widget.type == 'Income') {
                                 if (args.pointIndex == 0) {
@@ -432,12 +433,14 @@ class _ReportBodyState extends State<ReportBody> {
                                                   key: ObjectKey(
                                                       selectedTransactions[
                                                           int]),
-                                                  performsFirstActionWithFullSwipe:
-                                                      true,
-                                                  trailingActions: <
-                                                      SwipeAction>[
+                                                  trailingActions: <SwipeAction>[
                                                     SwipeAction(
-                                                        title: getTranslated(context, 'Delete') ?? 'Delete',
+                                                        performsFirstActionWithFullSwipe:
+                                                            true,
+                                                        title: getTranslated(
+                                                                context,
+                                                                'Delete') ??
+                                                            'Delete',
                                                         onTap:
                                                             (CompletionHandler
                                                                 handler) async {
@@ -485,7 +488,12 @@ class _ReportBodyState extends State<ReportBody> {
                                                         },
                                                         color: red),
                                                     SwipeAction(
-                                                        title: getTranslated(context, 'Add') ?? 'Add',
+                                                        performsFirstActionWithFullSwipe:
+                                                            true,
+                                                        title: getTranslated(
+                                                                context,
+                                                                'Add') ??
+                                                            'Add',
                                                         onTap:
                                                             (CompletionHandler
                                                                 handler) {
